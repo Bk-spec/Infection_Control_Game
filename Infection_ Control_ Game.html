@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infection Control and Safety Quiz</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        .container { width: 60%; margin: auto; }
+        .question { font-size: 18px; margin-bottom: 10px; }
+        .options { display: flex; flex-direction: column; gap: 10px; }
+        .option { padding: 10px; background: lightblue; cursor: pointer; border: 1px solid #000; }
+        .correct { background: lightgreen; }
+        .incorrect { background: lightcoral; }
+    </style>
+</head>
+<body>
+    <h2>Infection Control and Safety in the Dental Laboratory</h2>
+    <div class="container">
+        <div id="question" class="question"></div>
+        <div id="options" class="options"></div>
+    </div>
+    <script>
+        const questions = [
+            { question: "What is the first step in infection control before handling dental instruments?", options: ["Put on gloves", "Wash hands properly", "Disinfect the instruments", "Sterilize the work area"], answer: 1 },
+            { question: "What is the correct way to dispose of used needles?", options: ["Regular trash bin", "Sharps container", "Biohazard bag", "Recycle bin"], answer: 1 },
+            { question: "How long should you wash your hands before a dental procedure?", options: ["5 seconds", "10 seconds", "20 seconds", "1 minute"], answer: 2 },
+            { question: "Which PPE is essential in the dental laboratory?", options: ["Gloves", "Masks", "Protective eyewear", "All of the above"], answer: 3 },
+            { question: "What does 'autoclaving' do to dental instruments?", options: ["Cleans them", "Sterilizes them", "Dries them", "Disinfects them"], answer: 1 },
+            { question: "What is the minimum temperature required for proper autoclaving?", options: ["100°C", "121°C", "150°C", "200°C"], answer: 1 },
+            { question: "Which solution is commonly used for disinfecting surfaces in a dental lab?", options: ["Soap and water", "Alcohol-based disinfectants", "Hydrogen peroxide", "Bleach solution"], answer: 3 },
+            { question: "What is the purpose of barrier protection on dental chairs and equipment?", options: ["To make cleaning easier", "To protect against contamination", "To prevent dust accumulation", "None of the above"], answer: 1 },
+            { question: "How often should dental lab surfaces be disinfected?", options: ["Once a day", "Twice a week", "After every patient", "Only when visibly dirty"], answer: 2 },
+            { question: "Which of the following is NOT a mode of disease transmission in a dental setting?", options: ["Airborne", "Direct contact", "Surface evaporation", "Bloodborne"], answer: 2 },
+            { question: "What type of gloves should be worn when handling disinfectants?", options: ["Latex gloves", "Nitrile gloves", "Vinyl gloves", "Cloth gloves"], answer: 1 },
+            { question: "Which dental infection control guideline is provided by the CDC?", options: ["OSHA Standard 1910", "Guidelines for Infection Control in Dental Health-Care Settings", "WHO Sterilization Guidelines", "NIOSH Workplace Safety Standards"], answer: 1 },
+            { question: "Why is ultrasonic cleaning used before sterilization?", options: ["To kill bacteria", "To remove debris", "To disinfect surfaces", "To polish instruments"], answer: 1 },
+            { question: "What should be done with disposable items used in patient care?", options: ["Reused after cleaning", "Disposed of after each use", "Sterilized for reuse", "Washed with soap and water"], answer: 1 },
+            { question: "What is the main reason for wearing a face mask in a dental lab?", options: ["To protect against airborne particles", "To keep the face warm", "To prevent odors", "To reduce noise"], answer: 0 },
+            { question: "Which of the following is a bloodborne pathogen concern in dentistry?", options: ["Influenza", "Tuberculosis", "Hepatitis B", "Norovirus"], answer: 2 },
+            { question: "How should dental impressions be handled before sending them to the lab?", options: ["Wrap in dry gauze", "Disinfect and rinse thoroughly", "Place in a sealed bag", "Store in the fridge"], answer: 1 },
+            { question: "What is the recommended method for cleaning dental suction lines?", options: ["Flush with water only", "Use enzymatic cleaner", "Sterilize in an autoclave", "Let them air dry"], answer: 1 },
+            { question: "Which of these should NEVER be worn in a dental lab?", options: ["Short sleeves", "Open-toed shoes", "Gloves", "Protective eyewear"], answer: 1 }
+        ];
+        
+        let currentQuestion = 0;
+        function loadQuestion() {
+            document.getElementById('question').textContent = questions[currentQuestion].question;
+            document.getElementById('options').innerHTML = '';
+            questions[currentQuestion].options.forEach((option, index) => {
+                let btn = document.createElement('div');
+                btn.classList.add('option');
+                btn.textContent = option;
+                btn.onclick = () => checkAnswer(btn, index === questions[currentQuestion].answer);
+                document.getElementById('options').appendChild(btn);
+            });
+        }
+        function checkAnswer(option, isCorrect) {
+            if (isCorrect) {
+                option.classList.add('correct');
+                alert('Correct!');
+                currentQuestion++;
+                if (currentQuestion < questions.length) {
+                    setTimeout(loadQuestion, 1000);
+                } else {
+                    alert('Congratulations! You completed the quiz.');
+                }
+            } else {
+                option.classList.add('incorrect');
+                alert('Incorrect! Try again.');
+            }
+        }
+        loadQuestion();
+    </script>
+</body>
+</html>s
